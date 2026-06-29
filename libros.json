@@ -1,0 +1,290 @@
+[
+    {
+        "titulo": "PATRIA Y CIUDADANÍA",
+        "materia": "Ciencias Sociales",
+        "anio": "1er año",
+        "imagen": "/static/img/libros/PatriayCiudadania1ero.jpg",
+        "link": "https://drive.google.com/file/d/1Fl3h3bnGnJtHjp8UVsiK1mN5un9Zxob_/view"
+    },
+
+    {
+        "titulo": "EDUCACIÓN ARTÍSTICA",
+        "materia": "Artes",
+        "anio": "1er año",
+        "imagen": "/static/img/libros/Artistica1ero.jpg",
+        "link": "https://drive.google.com/file/d/1RVoE2aMVP7zlVOnfL9nS4KONfiL95TZo/view"
+    },
+
+    {
+        "titulo": "ALIMENTANDO CON CIENCIAS",
+        "materia": "Ciencias Naturales",
+        "anio": "1er año",
+        "imagen": "/static/img/libros/CienciasNaturales1ero.jpg",
+        "link": "https://drive.google.com/file/d/1u8rnntB_AKd3EOQGuTTKCBxgV7gvHmME/view"
+    },
+
+    {
+        "titulo": "EL ESPACIO GEOGRÁFICO DE LA HUMANIDAD",
+        "materia": "Ciencias Sociales",
+        "anio": "1er año",
+        "imagen": "/static/img/libros/geografia1.jpg",
+        "link": "https://drive.google.com/file/d/1KFegMSbEc3snTZjdTcQhyFuzqChB-nqX/view"
+    },
+
+    {
+        "titulo": "HISTORIA DE VENEZUELA Y DE NUESTRA AMÉRICA",
+        "materia": "Ciencias Sociales",
+        "anio": "1er año",
+        "imagen": "/static/img/libros/HistVnzla1ero.jpg",
+        "link": "https://drive.google.com/file/d/10J5h7NRZ96Q6l8Nc-2YDNm-mRYAPUJOz/view"
+    },
+
+    {
+        "titulo": "Inglés 1er Año",
+        "materia": "Inglés",
+        "anio": "1er año",
+        "imagen": "/static/img/libros/INGLES 1eraño.jpg",
+        "link": "https://drive.google.com/file/d/17VPz-G2VgR6iliBkbHsKWvgldWCL0jEP/view"
+    },
+
+    {
+        "titulo": "PALABRA DE IDENTIDAD",
+        "materia": "Lengua y Literatura",
+        "anio": "1er año",
+        "imagen": "/static/img/libros/lengua1.jpg",
+        "link": "https://drive.google.com/file/d/1YBg-u_6RMIGD-7hQ6x2BvMnNF16jyj8f/view"
+    },
+
+    {
+        "titulo": "Matemática para la vida",
+        "materia": "Matemática",
+        "anio": "1er año",
+        "imagen": "/static/img/libros/matematica1ero.jpg",
+        "link": "https://drive.google.com/file/d/1fKteSHy0rEwfCfCj8UQIqyzs_BEEAdap/view"
+    },
+
+    {
+        "titulo": "RECORRIENDO EL ARTE",
+        "materia": "Artes",
+        "anio": "2do año",
+        "imagen": "/static/img/libros/Edu Artistica2.jpg",
+        "link": "https://drive.google.com/file/d/15QFNQAn9vulWrrvtOCcl1wX2chAyO7X2/view"
+    },
+
+    {
+        "titulo": "EL POR VENIR DE LA VIDA",
+        "materia": "Ciencias Naturales",
+        "anio": "2do año",
+        "imagen": "/static/img/libros/csnaturaleza2.jpg",
+        "link": "https://drive.google.com/file/d/19rAP55DIICYoPnrZEHeL374Yt45ytXpV/view"
+    },
+
+     {
+        "titulo": "HISTORIA DE LA HUMANIDAD",
+        "materia": "Ciencias Sociales",
+        "anio": "2do año",
+        "imagen": "/static/img/libros/Historia Humanidad2do.jpg", 
+        "link": "https://drive.google.com/file/d/1sBpoKMEf4WZIgrz-fMkSrQbhKTwQhrch/view"
+    },
+
+     {
+        "titulo": "NUESTRA HISTORIA REPUBLICANA",
+        "materia": "Ciencias Sociales",
+        "anio": "2do año",
+        "imagen": "/static/img/libros/Historia Republi2do.jpg", 
+        "link": "https://drive.google.com/file/d/1Yxa-eyfgAC1R3grL3d2VPkrJKbWzXSR-/view"
+    },
+
+    {
+        "titulo": "Inglés 2do Año",
+        "materia": "Inglés",
+        "anio": "2do año",
+        "imagen": "/static/img/libros/Ingles2do.jpg", 
+        "link": "https://drive.google.com/file/d/1qRNmCdvYJV9B-oJedtvcPBwPomZTTh2K/view"
+    },
+
+    {
+        "titulo": "IDEARIO DE PALABRAS",
+        "materia": "Lengua y Literatura",
+        "anio": "2do año",
+        "imagen": "/static/img/libros/Lengua2do.jpg", 
+        "link": "https://drive.google.com/file/d/1aFS_7MEe-QdTB11AMwd-NMSi05k54AfB/view"
+    },
+
+    {
+        "titulo": "CONCIENCIA MATEMÁTICA",
+        "materia": "Matemática",
+        "anio": "2do año",
+        "imagen": "/static/img/libros/Matematicas2do.jpg", 
+        "link": "https://drive.google.com/file/d/1fXYBQ1Nr-Ink5IvN97gkI0oeMExOvJzE/view"
+    },
+
+    {
+        "titulo": "VIDA Y SALUD INTEGRAL",
+        "materia": "Ciencias Naturales",
+        "anio": "2do año",
+        "imagen": "/static/img/libros/Salud2do.jpg", 
+        "link": "https://drive.google.com/file/d/1UOCT-_4uaCxyvFPOuffCOLx1fJf2FJHQ/view"
+    },
+
+    {
+        "titulo": "CIENCIAS PARA VIVIR EN COMUNIDAD",
+        "materia": "Ciencias Naturales",
+        "anio": "3er año",
+        "imagen": "/static/img/libros/CsNataturales3ro-TomoI.jpg", 
+        "link": "https://drive.google.com/file/d/14BB3cKCu7xcrwwOVR1fWPkYkdmR1H7Jp/view"
+    },
+
+    {
+        "titulo": "CIENCIAS PARA VIVIIR EN COMUNIDAD",
+        "materia": "Ciencias Naturales",
+        "anio": "3er año",
+        "imagen": "/static/img/libros/CsNataturales3ro-TomoII.jpg", 
+        "link": "https://drive.google.com/file/d/1LWLn337x_YHgppCYmHs8QCx8KKFckoUq/view"
+    },
+
+    {
+        "titulo": "EL ESPACIO GEOGRÁFICO DE VENEZUELA",
+        "materia": "Ciencias Sociales",
+        "anio": "3er año",
+        "imagen": "/static/img/libros/Geografia3ro.jpg", 
+        "link": "https://drive.google.com/file/d/1ORxw8pPxxzagcmMyfhhWNzWlWy0kAX24/view"
+    },
+
+    {
+        "titulo": "Bolívar: tiempo y vigencia del hombre de las dicultades",
+        "materia": "Ciencias Sociales",
+        "anio": "3er año",
+        "imagen": "/static/img/libros/Hist Bolivar3ero.jpg", 
+        "link": "https://drive.google.com/file/d/1zpcnN9xkDQqoUIVZdvnpU8eLbgW6ZS4E/view"
+    },
+
+    {
+        "titulo": "Inglés 3er Año",
+        "materia": "Inglés",
+        "anio": "3er año",
+        "imagen": "/static/img/libros/INGLES_3er_Año.jpg", 
+        "link": "https://drive.google.com/file/d/16Sun4mibDiUIreKtOs_WBoHezCSdLYVU/view"
+    },
+
+    {
+        "titulo": "PALABRA LIBERADORA",
+        "materia": "Lengua y Literatura",
+        "anio": "3er año",
+        "imagen": "/static/img/libros/Lengua3ero.jpg", 
+        "link": "https://drive.google.com/file/d/1qIDIHniD2Rj2J2nVr2RB6KheDBJ-_yLw/view"
+    },
+
+    {
+        "titulo": "LA MATEMÁTICA DE LA BELLEZA",
+        "materia": "Matemática",
+        "anio": "3er año",
+        "imagen": "/static/img/libros/Matematica3ro.jpg", 
+        "link": "https://drive.google.com/file/d/1Usyai3XbeG5bGPieNWVi5hIZwCh2VTwz/view"
+    },
+
+    {
+        "titulo": "ENERGÍA PARA LA VIDA",
+        "materia": "Ciencias Naturales",
+        "anio": "4to año",
+        "imagen": "/static/img/libros/CsNataturales4to-TomoI.jpg", 
+        "link": "https://drive.google.com/file/d/1l98X0YznTqz9fvNkmo3cx7ILC07oiwZ5/view"
+    },
+
+    {
+        "titulo": "ENERGÍA PARA LA VIDA",
+        "materia": "Ciencias Naturales",
+        "anio": "4to año",
+        "imagen": "/static/img/libros/CsNataturales4to-TomoII.jpg", 
+        "link": "https://drive.google.com/file/d/1bSuOyw0bSrExmwksUtcdyQzJBbBBPY-C/view"
+    },
+
+    {
+        "titulo": "HISTORIA DE VENEZUELA CONTEMPORÁNEA",
+        "materia": "Ciencias Sociales",
+        "anio": "4to año",
+        "imagen": "/static/img/libros/Historia Vnzla4to.jpg", 
+        "link": "https://drive.google.com/file/d/1AqZFx0HnZJiSdhxOLgjJri9IrGoRWn5A/view"
+    },
+
+    {
+        "titulo": "Inglés 4to Año",
+        "materia": "Inglés",
+        "anio": "4to año",
+        "imagen": "/static/img/libros/Ingles4to.jpg", 
+        "link": "https://drive.google.com/file/d/1ryfSzC-Tf38Y383AaeolTTl63VZi71u7/view"
+    },
+
+    {
+        "titulo": "PALABRA CREADORA",
+        "materia": "Lengua y Literatura",
+        "anio": "4to año",
+        "imagen": "/static/img/libros/Lengua4to.jpg", 
+        "link": "https://drive.google.com/file/d/1nkkMzhrH1t8E4QnV5IhuTsBlmjOcgnD_/view"
+    },
+
+    {
+        "titulo": "NATURALEZA MATEMÁTICA",
+        "materia": "Matemática",
+        "anio": "4to año",
+        "imagen": "/static/img/libros/Matematicas4to.jpg", 
+        "link": "https://drive.google.com/file/d/1RjA3gBuV8g2xpXhyTD0hvnZfke028zZk/view"
+    },
+
+     {
+        "titulo": "Construyamos el futuro",
+        "materia": "Ciencias Naturales",
+        "anio": "5to año",
+        "imagen": "/static/img/libros/CsNataturales5to-TomoI.jpg", 
+        "link": "https://drive.google.com/file/d/199x-oP7vSsZgmLTowZwHyHCU6mcZQp0Z/view"
+    },
+
+     {
+        "titulo": "Construyamos el futuro",
+        "materia": "Ciencias Naturales",
+        "anio": "5to año",
+        "imagen": "/static/img/libros/CsNataturales5to-TomoII.jpg", 
+        "link": "https://drive.google.com/file/d/10vugckuJRaWBCaASy4UkME40y-itxCxm/view"
+    },
+
+     {
+        "titulo": "La tierra: Nuestro Dinámico Hogar",
+        "materia": "Ciencias Naturales",
+        "anio": "5to año",
+        "imagen": "/static/img/libros/CsTierra5to.jpg", 
+        "link": "https://drive.google.com/file/d/1O2jDYHXqt_Vlg_HhtIEaOo3XTRtsikCU/view"
+    },
+
+     {
+        "titulo": "GEOGRAFÍA DE VENEZUELA",
+        "materia": "Ciencias Sociales",
+        "anio": "5to año",
+        "imagen": "/static/img/libros/Geografia5to.jpg", 
+        "link": "https://drive.google.com/file/d/1UFlrIVFE11fQ74mH5smAGnOW9-p_ip7u/view"
+    },
+
+     {
+        "titulo": "Inglés 5to Año",
+        "materia": "Inglés",
+        "anio": "5to año",
+        "imagen": "/static/img/libros/Ingles5to.jpg", 
+        "link": "https://drive.google.com/file/d/1pWAXbvuDaPws8wFeGYHQuluN06oItidQ/view"
+    },
+
+     {
+        "titulo": "Palabra Universal",
+        "materia": "Lengua y Literatura",
+        "anio": "5to año",
+        "imagen": "/static/img/libros/Lengua5to.jpg", 
+        "link": "https://drive.google.com/file/d/1-iilBraKZHrnL8Ej8WrPUoXqNyFW1byo/view"
+    },
+
+     {
+        "titulo": "La Matemática y el vivir bien",
+        "materia": "Matemática",
+        "anio": "5to año",
+        "imagen": "/static/img/libros/Matematicas5to.jpg", 
+        "link": "https://drive.google.com/file/d/1f28hiP_nTVIq1KrysAL7On1OAjm6Hzq9/view"
+    }
+
+]
