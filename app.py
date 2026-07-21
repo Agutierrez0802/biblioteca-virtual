@@ -20,15 +20,26 @@ if MONGO_URI:
     libros_col = db['libros']
     sugerencias_col = db['sugerencias']
     usuarios_col = db['usuarios']
+    config_col = db['configuracion']
     
     # Crear usuario admin por defecto si no existe ninguno
     if usuarios_col.count_documents({}) == 0:
         usuarios_col.insert_one({
             "correo": "admin@biblioteca.com",
-            "password_hash": generate_password_hash("admin123")
+            "password_hash": generate_password_hash("admin123"),
+            "rol": "admin"
         })
 else:
     print("ADVERTENCIA: No se encontró MONGO_URI. Usando archivos JSON locales (No persistente en Vercel).")
+
+# Decorador para administradores
+def admin_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if 'usuario' not in session or session.get('rol') != 'admin':
+            return redirect(url_for('index'))
+        return f(*args, **kwargs)
+    return decorated_function
 
 # Decorador para proteger rutas
 def login_required(f):
@@ -49,11 +60,13 @@ def login():
             user = usuarios_col.find_one({"correo": correo})
             if user and check_password_hash(user['password_hash'], password):
                 session['usuario'] = correo
+                session['rol'] = user.get('rol', 'estudiante')
                 return redirect(url_for('index'))
         else:
             # Fallback local
             if correo == "admin@biblioteca.com" and password == "admin123":
                 session['usuario'] = correo
+                session['rol'] = "admin"
                 return redirect(url_for('index'))
                 
         return render_template('login.html', error="Credenciales incorrectas")
@@ -102,6 +115,62 @@ def sugerir():
     return jsonify({
         "mensaje": "Sugerencia enviada correctamente"
     })
+
+@app.route('/admin', methods=['GET'])
+@admin_required
+def admin_panel():
+    if MONGO_URI:
+        usuarios = list(usuarios_col.find({}, {'_id': False, 'password_hash': 0}))
+        config = config_col.find_one({"tipo": "correo"}) or {}
+    else:
+        usuarios = [{"correo": "admin@biblioteca.com", "rol": "admin"}]
+        config = {}
+    return render_template('admin.html', usuarios=usuarios, config=config)
+
+@app.route('/admin/config_correo', methods=['POST'])
+@admin_required
+def config_correo():
+    if MONGO_URI:
+        email = request.form.get('email')
+        password = request.form.get('password')
+        smtp_server = request.form.get('smtp_server', 'smtp.gmail.com')
+        smtp_port = request.form.get('smtp_port', '587')
+        
+        config_col.update_one(
+            {"tipo": "correo"},
+            {"$set": {
+                "email": email, 
+                "password": password,
+                "smtp_server": smtp_server,
+                "smtp_port": smtp_port
+            }},
+            upsert=True
+        )
+    return redirect(url_for('admin_panel'))
+
+@app.route('/admin/usuario', methods=['POST'])
+@admin_required
+def crear_usuario():
+    if MONGO_URI:
+        correo = request.form.get('correo')
+        password = request.form.get('password')
+        rol = request.form.get('rol', 'estudiante')
+        if not usuarios_col.find_one({"correo": correo}):
+            usuarios_col.insert_one({
+                "correo": correo,
+                "password_hash": generate_password_hash(password),
+                "rol": rol
+            })
+    return redirect(url_for('admin_panel'))
+
+@app.route('/admin/usuario/eliminar', methods=['POST'])
+@admin_required
+def eliminar_usuario():
+    if MONGO_URI:
+        correo = request.form.get('correo')
+        if correo != session.get('usuario'):
+            usuarios_col.delete_one({"correo": correo})
+    return redirect(url_for('admin_panel'))
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración - Biblioteca Virtual</title>
+    <link rel="icon" href="{{ url_for('static', filename='img/favicon.png') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+<header>
+    <nav class="navbar">
+        <div class="logo-container">
+            <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo">
+            <div>
+                <h2>Panel Admin</h2>
+                <p>Configuración del Sistema</p>
+            </div>
+        </div>
+        <div class="nav-buttons">
+            <a href="{{ url_for('index') }}" title="Volver al inicio">
+                <button style="color: var(--primary);">
+                    <i class="fa-solid fa-house"></i>
+                </button>
+            </a>
+            <a href="{{ url_for('logout') }}" title="Cerrar Sesión">
+                <button id="logoutBtn" style="color: #ef4444;">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                </button>
+            </a>
+            <button id="darkBtn"><i class="fa-solid fa-moon"></i></button>
+        </div>
+    </nav>
+</header>
+
+<section class="admin-dashboard">
+    <div class="admin-container">
+        
+        <!-- Configuración de Correo -->
+        <div class="admin-card">
+            <h3><i class="fa-solid fa-envelope"></i> Configuración de Correo (SMTP)</h3>
+            <p class="admin-subtitle">Credenciales para enviar correos de recuperación de contraseña.</p>
+            
+            <form action="{{ url_for('config_correo') }}" method="POST" class="admin-form">
+                
+                <div style="display: flex; gap: 15px; margin-bottom: 15px;">
+                    <div class="input-group" style="flex: 2; margin-bottom: 0;">
+                        <i class="fa-solid fa-server"></i>
+                        <input type="text" name="smtp_server" value="{{ config.get('smtp_server', 'smtp.gmail.com') }}" placeholder="Servidor SMTP (ej. smtp.gmail.com)" required>
+                    </div>
+                    <div class="input-group" style="flex: 1; margin-bottom: 0;">
+                        <i class="fa-solid fa-network-wired"></i>
+                        <input type="number" name="smtp_port" value="{{ config.get('smtp_port', '587') }}" placeholder="Puerto (ej. 587)" required>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <i class="fa-solid fa-at"></i>
+                    <input type="email" name="email" value="{{ config.get('email', '') }}" placeholder="Correo Remitente" required>
+                </div>
+                <div class="input-group">
+                    <i class="fa-solid fa-key"></i>
+                    <input type="password" name="password" value="{{ config.get('password', '') }}" placeholder="Contraseña o App Password" required>
+                </div>
+                <button type="submit" class="btn-admin">Guardar Configuración</button>
+            </form>
+        </div>
+
+        <!-- Gestión de Usuarios -->
+        <div class="admin-card">
+            <h3><i class="fa-solid fa-users"></i> Gestión de Usuarios</h3>
+            <p class="admin-subtitle">Agrega o elimina usuarios del sistema.</p>
+            
+            <form action="{{ url_for('crear_usuario') }}" method="POST" class="admin-form add-user-form">
+                <div class="input-group">
+                    <i class="fa-solid fa-user"></i>
+                    <input type="email" name="correo" placeholder="Nuevo Correo" required>
+                </div>
+                <div class="input-group">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" name="password" placeholder="Contraseña" required>
+                </div>
+                <select name="rol" class="admin-select" required>
+                    <option value="estudiante">Estudiante</option>
+                    <option value="admin">Administrador</option>
+                </select>
+                <button type="submit" class="btn-admin btn-add"><i class="fa-solid fa-plus"></i> Añadir</button>
+            </form>
+
+            <div class="users-table-container">
+                <table class="users-table">
+                    <thead>
+                        <tr>
+                            <th>Correo Electrónico</th>
+                            <th>Rol</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in usuarios %}
+                        <tr>
+                            <td>{{ user.correo }}</td>
+                            <td>
+                                <span class="role-badge {{ user.rol }}">{{ user.rol | capitalize }}</span>
+                            </td>
+                            <td>
+                                {% if user.correo != session.usuario %}
+                                <form action="{{ url_for('eliminar_usuario') }}" method="POST" style="display:inline;">
+                                    <input type="hidden" name="correo" value="{{ user.correo }}">
+                                    <button type="submit" class="btn-delete" title="Eliminar"><i class="fa-solid fa-trash"></i></button>
+                                </form>
+                                {% else %}
+                                <span class="text-muted">(Tú)</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
