@@ -23,5 +23,13 @@ env/
 Thumbs.db
 desktop.ini
 
+# Node
+node_modules/
+package-lock.json
+package.json
+
+# Documentación interna (Markdown)
+docs_md/
+
 # Gemini / Antigravity CLI
 .gemini/
