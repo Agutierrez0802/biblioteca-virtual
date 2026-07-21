@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iniciar Sesión - Biblioteca Virtual</title>
+    <title>Registro - Biblioteca Virtual</title>
     <link rel="icon" href="{{ url_for('static', filename='img/favicon.png') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -12,8 +12,8 @@
     <div class="login-container">
         <div class="login-card">
             <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo" class="login-logo">
-            <h2>Acceso al Catálogo</h2>
-            <p>Ingresa tus credenciales para continuar</p>
+            <h2>Crear Cuenta</h2>
+            <p>Regístrate para acceder al catálogo</p>
             
             {% if error %}
             <div class="alert-error">
@@ -21,7 +21,7 @@
             </div>
             {% endif %}
             
-            <form action="{{ url_for('login') }}" method="POST">
+            <form action="{{ url_for('register') }}" method="POST">
                 <div class="input-group">
                     <i class="fa-solid fa-envelope"></i>
                     <input type="email" name="correo" placeholder="Correo electrónico" required>
@@ -31,13 +31,17 @@
                     <i class="fa-solid fa-lock"></i>
                     <input type="password" name="password" placeholder="Contraseña" required>
                 </div>
+
+                <div class="input-group">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" name="confirm_password" placeholder="Confirmar Contraseña" required>
+                </div>
                 
-                <button type="submit" class="btn-login">Iniciar Sesión</button>
+                <button type="submit" class="btn-login">Registrarse</button>
             </form>
             
             <div class="login-footer">
-                <p><a href="{{ url_for('recuperar') }}">¿Olvidaste tu contraseña?</a></p>
-                <p>¿No tienes cuenta? <a href="{{ url_for('register') }}">Regístrate aquí</a></p>
+                <p>¿Ya tienes cuenta? <a href="{{ url_for('login') }}">Inicia Sesión</a></p>
             </div>
         </div>
     </div>

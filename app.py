@@ -1,16 +1,23 @@
 from flask import Flask, render_template, request, jsonify, session, redirect, url_for
 import json
 import os
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 from pymongo import MongoClient
 from dotenv import load_dotenv
 from werkzeug.security import generate_password_hash, check_password_hash
 from functools import wraps
+from itsdangerous import URLSafeTimedSerializer
 
 load_dotenv()
 
 app = Flask(__name__)
 # Secret key para firmar las cookies de la sesión
 app.secret_key = os.getenv('SECRET_KEY', 'clave-secreta-por-defecto-123')
+
+# Serializador para generar tokens de recuperación
+s = URLSafeTimedSerializer(app.secret_key)
 
 MONGO_URI = os.getenv('MONGO_URI')
 
@@ -72,6 +79,117 @@ def login():
         return render_template('login.html', error="Credenciales incorrectas")
         
     return render_template('login.html')
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    if request.method == 'POST':
+        correo = request.form.get('correo')
+        password = request.form.get('password')
+        confirm = request.form.get('confirm_password')
+        
+        if password != confirm:
+            return render_template('register.html', error="Las contraseñas no coinciden")
+            
+        if MONGO_URI:
+            if usuarios_col.find_one({"correo": correo}):
+                return render_template('register.html', error="El correo ya está registrado")
+                
+            usuarios_col.insert_one({
+                "correo": correo,
+                "password_hash": generate_password_hash(password),
+                "rol": "estudiante"
+            })
+            # Iniciar sesión automáticamente
+            session['usuario'] = correo
+            session['rol'] = "estudiante"
+            return redirect(url_for('index'))
+            
+    return render_template('register.html')
+
+def send_reset_email(to_email, reset_url):
+    config = config_col.find_one({"tipo": "correo"})
+    if not config:
+        print("ERROR: Configuración SMTP no establecida en la BD.")
+        return False
+        
+    sender_email = config.get('email')
+    sender_password = config.get('password')
+    smtp_server = config.get('smtp_server', 'smtp.gmail.com')
+    smtp_port = int(config.get('smtp_port', 587))
+    
+    msg = MIMEMultipart()
+    msg['From'] = f"Biblioteca Virtual <{sender_email}>"
+    msg['To'] = to_email
+    msg['Subject'] = "Recuperación de Contraseña - Biblioteca Virtual"
+    
+    body = f"""
+    Hola,
+    
+    Recibimos una solicitud para restablecer la contraseña de tu cuenta.
+    Haz clic en el siguiente enlace para crear una nueva contraseña (es válido por 1 hora):
+    
+    {reset_url}
+    
+    Si no solicitaste este cambio, puedes ignorar este correo.
+    """
+    msg.attach(MIMEText(body, 'plain'))
+    
+    try:
+        server = smtplib.SMTP(smtp_server, smtp_port)
+        server.starttls()
+        server.login(sender_email, sender_password)
+        server.send_message(msg)
+        server.quit()
+        return True
+    except Exception as e:
+        print("Error enviando correo:", e)
+        return False
+
+@app.route('/recuperar', methods=['GET', 'POST'])
+def recuperar():
+    if request.method == 'POST':
+        correo = request.form.get('correo')
+        if MONGO_URI:
+            user = usuarios_col.find_one({"correo": correo})
+            if user:
+                # Generar token
+                token = s.dumps(correo, salt='recover-key')
+                reset_url = url_for('reset_password', token=token, _external=True)
+                
+                # Enviar correo
+                enviado = send_reset_email(correo, reset_url)
+                if enviado:
+                    return render_template('recuperar.html', success="Se ha enviado un enlace de recuperación a tu correo.")
+                else:
+                    return render_template('recuperar.html', error="Hubo un problema enviando el correo. Revisa la configuración SMTP.")
+            else:
+                # Simulamos éxito para no revelar si un correo existe o no (seguridad)
+                return render_template('recuperar.html', success="Si el correo existe, se enviará un enlace de recuperación.")
+    return render_template('recuperar.html')
+
+@app.route('/reset_password/<token>', methods=['GET', 'POST'])
+def reset_password(token):
+    try:
+        # El token expira en 3600 segundos (1 hora)
+        correo = s.loads(token, salt='recover-key', max_age=3600)
+    except Exception:
+        return render_template('recuperar.html', error="El enlace de recuperación es inválido o ha expirado.")
+        
+    if request.method == 'POST':
+        password = request.form.get('password')
+        confirm = request.form.get('confirm_password')
+        
+        if password != confirm:
+            return render_template('reset_password.html', token=token, error="Las contraseñas no coinciden")
+            
+        if MONGO_URI:
+            usuarios_col.update_one(
+                {"correo": correo},
+                {"$set": {"password_hash": generate_password_hash(password)}}
+            )
+            return redirect(url_for('login'))
+            
+    return render_template('reset_password.html', token=token)
 
 @app.route('/logout')
 def logout():
