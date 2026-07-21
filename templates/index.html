@@ -56,6 +56,14 @@
 
         <div class="nav-buttons">
 
+            {% if session.get('rol') == 'admin' %}
+            <a href="{{ url_for('admin_panel') }}" title="Panel de Administración">
+                <button style="color: var(--primary);">
+                    <i class="fa-solid fa-gear"></i>
+                </button>
+            </a>
+            {% endif %}
+
             <a href="{{ url_for('logout') }}" title="Cerrar Sesión">
                 <button id="logoutBtn" style="color: #ef4444;">
                     <i class="fa-solid fa-right-from-bracket"></i>

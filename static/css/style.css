@@ -1067,3 +1067,154 @@ body.dark .login-card h2 {
     font-size: 0.8rem;
     margin-bottom: 0;
 }
+
+/* =========================
+   ADMIN PANEL
+========================= */
+
+.admin-dashboard {
+    padding: 120px 5% 50px;
+    min-height: 100vh;
+}
+
+.admin-container {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.admin-card {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+}
+
+body.dark .admin-card {
+    background: #1e293b;
+}
+
+.admin-card h3 {
+    color: var(--secondary);
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+}
+
+body.dark .admin-card h3 {
+    color: white;
+}
+
+.admin-subtitle {
+    color: var(--gray);
+    margin-bottom: 25px;
+    font-size: 0.95rem;
+}
+
+.admin-form .input-group {
+    margin-bottom: 15px;
+}
+
+.btn-admin {
+    background: var(--primary);
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-admin:hover {
+    background: var(--secondary);
+}
+
+.add-user-form {
+    display: flex;
+    gap: 15px;
+    align-items: flex-end;
+    margin-bottom: 30px;
+}
+
+.add-user-form .input-group {
+    margin-bottom: 0;
+    flex: 1;
+}
+
+.admin-select {
+    padding: 16px 20px;
+    border-radius: 15px;
+    border: 1px solid #d1d5db;
+    outline: none;
+    background: white;
+}
+
+body.dark .admin-select {
+    background: #1e293b;
+    color: white;
+    border-color: #334155;
+}
+
+.users-table-container {
+    overflow-x: auto;
+}
+
+.users-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.users-table th, .users-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+body.dark .users-table th, body.dark .users-table td {
+    border-color: #334155;
+}
+
+.role-badge {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.role-badge.admin {
+    background: #fee2e2;
+    color: #ef4444;
+}
+
+.role-badge.estudiante {
+    background: #dbeafe;
+    color: #0057ff;
+}
+
+body.dark .role-badge.admin {
+    background: rgba(239,68,68,0.2);
+}
+
+body.dark .role-badge.estudiante {
+    background: rgba(0,87,255,0.2);
+}
+
+.btn-delete {
+    background: none;
+    border: none;
+    color: #ef4444;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: 0.3s;
+}
+
+.btn-delete:hover {
+    transform: scale(1.2);
+}
+
+.text-muted {
+    color: var(--gray);
+    font-style: italic;
+}
